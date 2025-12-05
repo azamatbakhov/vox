@@ -1,0 +1,8 @@
+syntax = "proto3";
+package proto.vox;
+
+message AuthorizationResult
+{
+    bytes user_uuid = 1;
+    bytes session_uuid = 2;
+}

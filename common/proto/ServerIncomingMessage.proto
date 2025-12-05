@@ -1,0 +1,16 @@
+syntax = "proto3";
+package proto.vox;
+
+import "AuthorizationRequest.proto";
+import "RegistrationRequest.proto";
+import "Heartbeat.proto";
+
+message ServerIncomingMessage
+{
+    oneof msg
+    {
+        AuthorizationRequest auth_request = 1;
+        RegistrationRequest  reg_request = 2;
+        Heartbeat heartbeat = 3;
+    }
+}

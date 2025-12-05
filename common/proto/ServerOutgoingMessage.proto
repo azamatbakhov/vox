@@ -1,0 +1,14 @@
+syntax = "proto3";
+package proto.vox;
+
+import "AuthorizationResult.proto";
+import "RegistrationResult.proto";
+
+message ServerOutgoingMessage
+{
+    oneof msg
+    {
+        AuthorizationResult auth_result = 1;
+        RegistrationResult  reg_result = 2;
+    }
+}

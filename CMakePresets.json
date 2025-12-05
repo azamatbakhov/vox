@@ -1,0 +1,71 @@
+{
+    "version": 5,
+    "configurePresets": [
+        {
+            "name": "config_base",
+            "hidden": true,
+            "binaryDir": "${sourceDir}/build/${presetName}",
+            "installDir": "${sourceDir}/dist/${presetName}",
+            "cacheVariables": {
+                "CMAKE_EXPORT_COMPILE_COMMANDS": true,
+                "CMAKE_SYSTEM_VERSION": "10.0",
+                "CMAKE_TOOLCHAIN_FILE": "$env{VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake"
+            }
+        },
+        {
+            "name": "vs_2022_base",
+            "hidden": true,
+            "generator": "Visual Studio 17 2022",
+            "cacheVariables": {
+                "CMAKE_CONFIGURATION_TYPES": "Debug;Release;RelWithDebInfo"
+            },
+
+            "vendor": {
+                "microsoft.com/VisualStudioSettings/CMake/1.0": {
+                    "hostOS": ["Windows"],
+                    "intelliSenseMode": "windows-msvc-x64"
+                }
+            }
+        },
+        {
+            "name": "win_vs2022_x64_base",
+            "inherits": ["config_base", "vs_2022_base"],
+            "hidden": true,
+            "toolset": {
+                "strategy": "set",
+                "value": "v143,host=x64"
+            },
+            "architecture": {
+                "strategy": "set",
+                "value": "x64"
+            }
+        },
+        {
+            "name": "win_vs2022_x64",
+            "inherits": ["win_vs2022_x64_base"],
+            "displayName": "VS 2022 x64",
+            "description": "Configure for Visual Studio 17 2022",
+            "hidden": false
+        }
+    ],
+    "buildPresets": [
+        {
+            "name": "VS Debug",
+            "displayName": "VS 2022 x64 Debug",
+            "configurePreset": "win_vs2022_x64",
+            "configuration": "Debug"
+        },
+        {
+            "name": "VS Release",
+            "displayName": "VS 2022 x64 Release",
+            "configurePreset": "win_vs2022_x64",
+            "configuration": "Release"
+        },
+        {
+            "name": "VS RelWithDebugInfo",
+            "displayName": "VS 2022 x64 RelWithDebInfo",
+            "configurePreset": "win_vs2022_x64",
+            "configuration": "RelWithDebInfo"
+        }
+    ]
+}

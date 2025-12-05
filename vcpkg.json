@@ -1,0 +1,22 @@
+{
+  "dependencies": [
+    {
+        "name": "protobuf",
+        "version>=": "3.21.12#2"
+    },
+    {
+        "name": "boost-asio",
+        "version>=": "1.89.0#0",
+        "features": ["deadline-timer", "spawn"]
+    },
+    {
+        "name": "boost-uuid",
+        "version>=": "1.89.0#0"
+    },
+    {
+        "name": "libpqxx",
+        "version>=": "7.10.1#0"
+    }
+  ],
+  "builtin-baseline": "a1212c93cabaa9c5c36c1ffdb4bddd59fdf31e43"
+}
