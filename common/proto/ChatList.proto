@@ -1,0 +1,12 @@
+syntax = "proto3";
+package proto.vox;
+
+import "Chat.proto";
+
+message ChatList
+{
+    /**
+     *
+     */
+    repeated Chat chat_list = 1;
+}

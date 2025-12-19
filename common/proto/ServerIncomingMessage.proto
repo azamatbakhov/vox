@@ -4,6 +4,7 @@ package proto.vox;
 import "AuthorizationRequest.proto";
 import "RegistrationRequest.proto";
 import "Heartbeat.proto";
+import "ChatListRequest.proto";
 
 message ServerIncomingMessage
 {
@@ -11,6 +12,7 @@ message ServerIncomingMessage
     {
         AuthorizationRequest auth_request = 1;
         RegistrationRequest  reg_request = 2;
-        Heartbeat heartbeat = 3;
+        Heartbeat heartbeat = 3;        
+        ChatListRequest chat_list_request = 4;
     }
 }

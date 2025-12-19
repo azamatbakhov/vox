@@ -19,6 +19,13 @@ namespace vox::db
         std::string firstName;
         //...
     };
+
+    struct Chats
+    {
+      std::size_t id{};
+      //...
+    };
+
 }
 
 
@@ -31,6 +38,7 @@ struct
 
 
     virtual std::optional<::vox::db::User> getUser(const std::string& login) = 0;
+    virtual std::vector<::vox::db::Chats> getUserChats(const boost::uuids::uuid& userUuid) = 0;
 };
 
 
@@ -41,6 +49,7 @@ class DataModel : public IDataModel
     explicit DataModel(const std::string& connectStr);
 
     virtual std::optional<::vox::db::User> getUser(const std::string& login) override;
+    virtual std::vector<::vox::db::Chats> getUserChats(const boost::uuids::uuid& userUuid) override;
 
 private:
     void printStatistics();

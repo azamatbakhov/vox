@@ -1,0 +1,9 @@
+<RCC>
+    <qresource prefix="/">
+        <file alias="MainPage.qml">../qml/MainPage.qml</file>
+        <file alias="Main.qml">../qml/Main.qml</file>
+        <file alias="LoadingPage.qml">../qml/LoadingPage.qml</file>
+        
+        <file>images/logo.png</file>
+    </qresource>
+</RCC>

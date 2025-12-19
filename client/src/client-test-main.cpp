@@ -1,9 +1,10 @@
-﻿#include <iostream>
-
-#include "VoxClient.h"
+﻿#include "VoxClient.h"
 #include "vox/diag/logging.h"
 #include "vox/utils/uuid.h"
 #include "vox/utils/enum.h"
+
+#include <QGuiApplication>
+#include <QQmlApplicationEngine>
 
 std::shared_ptr<VoxClient> client;
 std::string clientId{"unknown"};
@@ -61,26 +62,41 @@ void handle(const VoxClient::OperationCompletionManifold& operation)
 
 int main(int argc, char* argv[])
 { 
-    if (argc > 1)
-    {
-        clientId = argv[1];
-    }
+    QGuiApplication app(argc, argv);
 
-    VOX_LOG_INFO("Client {}. Enter <q> to exit", clientId);
+    QQmlApplicationEngine engine;
+    const QUrl url(QStringLiteral("qrc:/Main.qml"));
+    QObject::connect(
+        &engine, &QQmlApplicationEngine::objectCreated, &app,
+        [url](QObject *obj, const QUrl &objUrl) {
+          if (!obj && url == objUrl)
+            QCoreApplication::exit(-1);
+        },
+        Qt::QueuedConnection);
+    engine.load(url);
 
-    client = std::make_shared<VoxClient>(handle, "localhost", 5543);
-    
-    client->start();
+    return app.exec();
 
-    do
-    {
-        std::string command;
-        std::cin >> command;
+    //if (argc > 1)
+    //{
+    //    clientId = argv[1];
+    //}
 
-        if (command == "q")
-            break;
+    //VOX_LOG_INFO("Client {}. Enter <q> to exit", clientId);
 
-    } while (true);
+    //client = std::make_shared<VoxClient>(handle, "localhost", 5543);
+    //
+    //client->start();
+
+    //do
+    //{
+    //    std::string command;
+    //    std::cin >> command;
+
+    //    if (command == "q")
+    //        break;
+
+    //} while (true);
 
     
     return 0;

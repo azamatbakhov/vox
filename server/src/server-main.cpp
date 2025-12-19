@@ -48,6 +48,17 @@ void handleMsg(proto::vox::ServerIncomingMessage const& msg,
             std::cout << "kHeartbeat";
             break;
         }
+        case proto::vox::ServerIncomingMessage::kChatListRequest:
+        {
+            auto const& request = msg.chat_list_request();
+            const auto uuid = uuidFromBytes(request.user_uuid());
+
+            VOX_LOG_INFO("Chat list request for {}", uuidToString(uuid);
+
+
+
+          break;
+        }
         default:
             break;
     }

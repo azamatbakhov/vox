@@ -16,6 +16,10 @@
     {
         "name": "libpqxx",
         "version>=": "7.10.1#0"
+    },
+    {
+        "name": "librdkafka",
+        "version>=": "2.12.0"
     }
   ],
   "builtin-baseline": "a1212c93cabaa9c5c36c1ffdb4bddd59fdf31e43"

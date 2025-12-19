@@ -1,0 +1,7 @@
+syntax = "proto3";
+package proto.vox;
+
+message ChatListRequest
+{
+    bytes user_uuid = 1;
+}

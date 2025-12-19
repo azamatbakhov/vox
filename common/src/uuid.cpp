@@ -16,7 +16,8 @@ boost::uuids::uuid uuidFromBytes(std::string const& bytes)
 {
     if (bytes.size() != boost::uuids::uuid::static_size())
     {
-        throw std::length_error("Trying to initialize a UUID with the wrong number of bytes");
+        return boost::uuids::nil_uuid();
+        //throw std::length_error("Trying to initialize a UUID with the wrong number of bytes");
     }
 
     boost::uuids::uuid uuid;
@@ -27,7 +28,7 @@ boost::uuids::uuid uuidFromBytes(std::string const& bytes)
 
 boost::uuids::uuid uuidFromString(std::string const& str)
 {
-    boost::uuids::uuid result;
+    boost::uuids::uuid result = boost::uuids::nil_uuid();
 
     try
     {
@@ -39,7 +40,6 @@ boost::uuids::uuid uuidFromString(std::string const& str)
         // without specifiying which string was invalud.
         std::ostringstream strm;
         strm << "Invalid UUID: '" << str << '\'';
-        throw std::runtime_error(strm.str());
     }
 
     return result;

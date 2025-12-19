@@ -83,7 +83,7 @@ bool VoxServer::sendMessage(proto::vox::ServerOutgoingMessage const& msg, boost:
         }
 
         boost::asio::co_spawn(m_ioContext, 
-            sendImpl(msg, *itSession->second.socket), boost::asio::detached);        
+            sendImpl(msg, *itSession->second.socket), boost::asio::detached);
 
     }
     catch (std::exception const& e)

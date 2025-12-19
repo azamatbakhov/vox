@@ -49,6 +49,40 @@ std::optional<::vox::db::User> DataModel::getUser(const std::string& login)
     return std::optional<::vox::db::User>();
 }
 
+std::vector<::vox::db::Chats> DataModel::getUserChats(const boost::uuids::uuid &userUuid)
+{
+    try
+    {
+        const pqxx::result result = m_pgWork
+            .exec("SELECT id, first_name from users where login=$1", pqxx::params{login});
+
+        m_pgWork.commit();
+
+        if (result.empty())
+        {
+            return std::nullopt;
+        }
+        
+        // CHECK if only one user in db.
+
+        return ::vox::db::User
+        {
+            .id = result[0][0].as<std::size_t>(),
+            .login = login,
+            .uuid = uuidFromString(result[0][1].as<std::string>()),
+            .firstName = result[0][2].c_str(),
+        };
+    }
+    catch (const std::exception& ex)
+    {
+        VOX_LOG_ERROR("Failed to gather a statistics {}", ex.what());
+    }
+
+    return std::optional<::vox::db::User>();
+
+  return std::vector<::vox::db::Chats>();
+}
+
 
 void DataModel::printStatistics()
 {

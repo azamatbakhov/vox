@@ -3,6 +3,7 @@ package proto.vox;
 
 import "AuthorizationResult.proto";
 import "RegistrationResult.proto";
+import "ChatList.proto";
 
 message ServerOutgoingMessage
 {
@@ -10,5 +11,6 @@ message ServerOutgoingMessage
     {
         AuthorizationResult auth_result = 1;
         RegistrationResult  reg_result = 2;
+        ChatList chat_list = 3;
     }
 }
